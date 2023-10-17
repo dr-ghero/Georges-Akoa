@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio de Akoa Georges</title>
+    <style>
+        body {
+            background: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .project-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .project-list li {
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .project-list li:hover {
+            background-color: #555;
+        }
+        .project-details {
+            background: #555;
+            color: #fff;
+            padding: 20px;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        .project-details img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        .project-counter {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .project-counter:hover {
+            color: #ff0000;
+        }
+
+
+
+    .project-details {
+    background: #555;
+    color: #fff;
+    padding: 20px;
+    display: none;
+    transition: opacity 0.3s ease;
+    text-align: center; /* Ajoutez cette ligne pour centrer le contenu */
+}
+
+.project-image {
+    position: relative;
+    display: inline-block;
+}
+
+.project-image img {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajustez la transparence en modifiant la dernière valeur (0.5) */
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.image-overlay h3 {
+    margin: 0;
+    color: #fff;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Projets et Réalisations</h1>
+        <div class="project-counter">Nombre de projets : <span id="projectCount">0</span></div>
+        <ul class="project-list">
+            <li onclick="showProjectDetails(1)">Command&Repar</li>
+            <li onclick="showProjectDetails(2)">the Rockapp</li>
+            <li onclick="showProjectDetails(3)">Suges</li>
+            <li onclick="showProjectDetails(3)">Tchatbook</li>
+          <!-- Ajoutez d'autres projets ici -->
+        </ul>
+        <div class="project-details" id="projectDetails">
+            <h2 id="projectTitle"></h2>
+            <div class="project-image">
+                <img id="projectImage" src="" alt="Image du projet">
+                <div class="image-overlay">
+                    <h3 id="imageName"></h3>
+                </div>
+            </div>
+            <div id="projectContent"></div>
+        </div>
+    <script>
+        var projectCount = 4; // Mettez à jour le nombre total de projets ici
+
+        function showProjectDetails(projectId) {
+            var projectTitle = document.getElementById('projectTitle');
+            var projectContent = document.getElementById('projectContent');
+            var projectDetails = document.getElementById('projectDetails');
+
+            // Mettez à jour le titre et le contenu du projet sélectionné
+            if (projectId === 1) {
+                projectTitle.textContent = "Command&Repar";
+                projectContent.innerHTML = `
+                    <p>Description du projet Command&Repar</p>
+                    <img src="img/c&r.png" alt="Image du projet 1">
+                    <p>'command & repair' est une application destinée à simplifier les dépannages de nature domestique ou courant, en permettant aux utilisateurs d'avoir accès à plus d'une dizaine de technicien spécialiste disponible en permanence.</p>
+                `;
+            } else if (projectId === 2) {
+                projectTitle.textContent = "Projet 2";
+                projectContent.innerHTML = `
+                    <p>Description du projet 2</p>
+                    <img src="chemin/vers/image2.jpg" alt="Image du projet 2">
+                    <p>Plus d'informations sur le projet 2...</p>
+                `;
+            } else if (projectId === 3) {
+                projectTitle.textContent = "Projet 3";
+                projectContent.innerHTML = `
+                    <p>Description du projet 3</p>
+                    <img src="chemin/vers/image3.jpg" alt="Image du projet 3">
+                    <p>Plus d'informations sur le projet 3...</p>
+                `;
+            }
+            
+            // Afficher les détails du projet sélectionné avec une animation de fondu
+            projectDetails.style.display = "block";
+            projectDetails.style.opacity = "0";
+            setTimeout(function() {
+                projectDetails.style.opacity = "1";
+            }, 100);
+        }
+
+        // Mettre à jour le compteur de projets en temps réel avec une animation de changement de couleur
+        var projectCountElement = document.getElementById('projectCount');
+        projectCountElement.textContent = projectCount;
+        setInterval(function() {
+            projectCountElement.style.color = getRandomColor();
+        }, 1000);
+
+        // Fonction pour générer une couleur aléatoire
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
